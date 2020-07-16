@@ -1,0 +1,11 @@
+<?php if(!$lista) {?>
+<option value="0">No Existe Controlador para este rol</option>
+<?php } else{ 
+     foreach ($lista as $a) { ?>
+<option value="<?php echo $a->id?>"<?php echo $a->id == $control_id?" selected":""?>>
+<?php echo $a->controlador?>
+</option> 
+     <?php }
+    ?>
+
+<?php } ?>

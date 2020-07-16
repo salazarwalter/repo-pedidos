@@ -1,0 +1,140 @@
+
+  <main id="main">
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row">
+          <div class="col-lg-9 text-center text-lg-left">
+          </div>
+          <div class="col-lg-3 cta-btn-container text-center">
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- End Cta Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Ingreso Al sistema</h2>
+        </div>
+
+        <div class="row">
+
+
+            <!--<div class="col-lg-2 "></div>-->
+          <div class="col-lg-8 offset-2 ">
+              <?php View::content()?>
+            <form method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="name">Su Empresa</label>
+                  <?php echo Form::dbSelect("x.negocio_id","neg_nom",array("negocio","combo"),NULL,"class='form-control'")?>
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="name">Su Usuario</label>
+                  <?php echo Form::text("x.usuario",'class="form-control" maxlength="30" placeholder ="Ingrese Usuario" ')?>
+                  <!--<input type="text" name="usuario" class="form-control" data-rule="minlen:4" placeholder ="Ingrese Usuario" />-->
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="name">Contraseña</label>
+                  <?php echo Form::password("x.clave",'class="form-control" maxlength="30" placeholder="Ingrese Clave" ')?>
+                  <!--<input type="password" class="form-control" name="clave" id="email" data-rule=""  />-->
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="text-center"><button type="submit">Ingresar</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Arsha</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+<!--          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>-->
+
+<!--          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>-->
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+  <div id="preloader"></div>
+<!--
+  1)Dado un entero mostrar el doble
+  2)dado un sueldo decrementarlo en un 20%
+  3)Dado el radio de una circuanferencia calcular su perimetro y area-->

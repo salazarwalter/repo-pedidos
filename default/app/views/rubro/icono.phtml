@@ -1,0 +1,96 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-4">
+            <!-- /.card -->
+            <?php View::content();?>
+            <form method="POST" enctype="multipart/form-data">
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                <?php echo Form::hidden("a.id")?>
+                  <h3><?php echo $a->rubro?></h3>
+                  <div class="col-sm-12">
+                      <img id="foto" src="<?php echo $a->iconox?>" alt="" class="img-circle img-fluid">
+                  </div>
+                  
+                  
+<!--                <div class="form-group">
+                  <label>Rubro</label>
+                  <?php echo Form::text("a.rubro","maxlength='30' class='form-control' placeholder='Ingrese El Nombre del Rubro'")?>
+                </div>-->
+                <!-- /.form group -->
+
+                <!-- time Picker -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                   <button type="button" id="abrir" class="btn btn-primary pull-left">
+                            <span class="glyphicon glyphicon-camera"> </span>
+                            Buscar 
+                        </button>
+                      <?php echo Form::input("file", "imagen",'class="form-control" required style="display:none"')?>
+                  
+                  <button type="submit" class="btn btn-info float-right">Registrar</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+    <script>
+      $(document).ready(function (){
+        $("#foto").click(function (){
+            $("#imagen").click();
+        });
+        $("#abrir").click(function (){
+            $("#imagen").click();
+        });
+
+       $("#imagen").change(function(e) {
+           addImage(e);
+       }        
+        );  
+      });
+                
+                
+ function addImage(e){
+      var file = e.target.files[0],
+      imageType = /image.*/;
+    
+      if (!file.type.match(imageType))
+       return;
+  
+      var reader = new FileReader();
+  
+      reader.onload = function(e){
+         var result=e.target.result;
+        $('#foto').attr("src",result);
+      }
+       
+      reader.readAsDataURL(file);
+     }
+                  
+                
+    </script>
+

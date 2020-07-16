@@ -1,0 +1,116 @@
+  
+<style>
+.dropdown-toggle::after {
+    display: none;
+}    
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- /.card -->
+                    <div class="card card-info">
+                        <div class="card-header">
+
+                            <h3 class="card-title"><?php echo $sub; ?></h3>
+                            <a href="<?php echo $linkAdd; ?>" class="btn btn-primary float-right">Agregar</a>
+                        </div>
+                        <div class="card-body">
+
+
+                                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+<table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>Módulo</th>
+                  <!--<th>Rol</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($lista as $a){
+                        $clase_color="";
+                        if($a->activo=="N"){ 
+                            $clase_color=" class='text-danger' ";
+                        }
+                        ?>
+                    <tr>
+<!--                        <td>
+                            
+                        </td>-->
+                        <td>
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-star"></i>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="<?php echo $linkEdit.$a->id?>">
+        <i class="fa fa-edit text-info"></i> 
+        Editar
+    </a>
+                            <?php if($a->activo=="S"){ ?>
+    <a class="dropdown-item" href="<?php echo $linkDel.$a->id?>">
+        <i class="fa fa-trash text-danger"></i> 
+        Desactivar
+    </a>
+                            <?php }?>
+                            <?php if($a->activo=="N"){ ?>
+    <a class="dropdown-item" href="<?php echo $linkAct.$a->id?>">
+       <i class="fas fas fa-angle-left text-success"></i>
+        Activar
+    </a>
+                            <?php }?>
+  </div>
+</div>
+                            
+                        </td>
+                        <td<?php echo $clase_color?>><?php echo $a->modulo?></td>
+                    </tr>
+                    
+                    <?php } ?>
+              </table>
+                                            </div>
+                                        </div>
+                                <!-- /.card-body -->
+                            </div>
+
+
+
+
+
+
+
+                            <!-- time Picker -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        
+    });
+</script>

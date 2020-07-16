@@ -1,0 +1,80 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-6">
+            <!-- /.card -->
+            <?php View::content();?>
+                <form method="POST">
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Horario Atención</label>
+                  <?php echo Form::text("a.horario","maxlength='40' class='form-control' placeholder='Por ejmplo: Lun a Vier 9-12hs y 16-21 Sab 9:30 a 13:30hs'")?>
+                </div>
+                <div class="form-group">
+                  <label>Rubro</label>
+                  <?php echo Form::dbSelect("a.rubro_id",NULL,array("rubro","combo"),NULL,"class='form-control'")?>
+                </div>
+                <div class="form-group">
+                  <label>Tags Búsqueda</label>
+                  <?php echo Form::text("a.tags","maxlength='200' class='form-control' placeholder='Por ejemplo: Alineado, Balanceo, brushing, etc'")?>
+                </div>
+                  
+                <!-- time Picker -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-info float-right">Actualizar</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <script>
+  $(document).ready(function (){
+      verLocalidades();
+      $("#a_provincia_id").change(function (){
+          verLocalidades()
+      });
+  });
+      
+
+function verLocalidades()
+{
+    var prov_id = $("#a_provincia_id").val();
+    var loc_id =  $("#a_localidad_id").val();
+    var datos={"prov_id": prov_id, "loc_id": loc_id};
+    var url="<?php echo PUBLIC_PATH."../../localidad/lista_por_provincia"?>";
+    $.post(url, datos, function (e){
+        console.log(e);
+       $("#a_localidad_id").html(e) ;        
+    });
+    
+    
+}
+      
+  </script>
+  
+  

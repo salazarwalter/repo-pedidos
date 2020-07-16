@@ -1,0 +1,119 @@
+  
+<style>
+.dropdown-toggle::after {
+    display: none;
+}    
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- /.card -->
+                    <div class="card card-info">
+                        <div class="card-header">
+
+                            <h3 class="card-title"><?php echo $sub; ?></h3>
+                            <!--<a href="<?php //echo $linkAdd; ?>" class="btn btn-primary float-right">Agregar</a>-->
+                        </div>
+                        <div class="card-body">
+                                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+<table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <!--<th>&nbsp;</th>-->
+                  <th>Promoción</th>
+                  <th>Precio</th>
+                  <!--<th>Publicado</th>-->
+                  <th>Categoría</th>
+                  <th>Componentes</th>
+                  <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($lista as $a){
+                        $clase_color="";
+                        if($a->activo=="N"){ 
+                            $clase_color=" class='text-danger' ";
+                        }
+                        ?>
+                    <tr>
+                        
+                        
+                        <td<?php echo $clase_color?>><?php echo $a->art_nom?></td>
+                        <td<?php echo $clase_color." right"?>>$<?php echo number_format($a->art_pre,2,",",".")?></td>
+                        <td<?php echo $clase_color?>><?php echo $a->categoria?></td>
+                        <td<?php echo $clase_color?>>
+                            <!--<ul>-->
+                            <?php $compo = $art->componentes($a->id);
+                                  if(count($compo)==0) {
+                                      $xx=$art->hallarArticulos($a->id);
+                            ?>
+                                <li><i class="fa fa-star text-info"></i>
+                                    <small><?php echo $xx->marca?></small></li>
+                                
+                                  <?php } else { 
+                             foreach ($compo as $x) { ?>
+                                <li>
+                                    <i class="fa fa-star text-info"></i>
+                                    <?php echo $x->descripcion?>
+                                </li>
+                                <li><small><?php echo $x->marca?></small></li>
+                                <li>Cantidad <strong><?php echo $x->cant?></strong> <small><?php echo $x->unidad?></small></li>
+                               <?php  }
+                                  }
+                                ?>
+                        </td>
+                        <td>
+                            <a href="<?php echo $linkAlCarrito.$a->id?>" class="btn btn-info"><i class="fas fa-cart-plus"></i> Al Carrito</a>
+                        </td>
+                    </tr>
+                    
+                    <?php } ?>
+        </tbody>
+              </table>
+                                            </div>
+                                        </div>
+                                <!-- /.card-body -->
+                            </div>
+
+
+
+
+
+
+
+                            <!-- time Picker -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+            "lengthChange": false,
+        });
+        
+    });
+</script>

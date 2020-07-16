@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset=<?= APP_CHARSET ?> >
+  <title>KumbiaPHP Framework</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?php echo PUBLIC_PATH?>img/lista.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo PUBLIC_PATH?>img/lista.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="<?php echo PUBLIC_PATH?>img/lista.svg">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  
+  <link rel="stylesheet" href="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!--<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/popper/popper.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  
+<link href="<?php echo PUBLIC_PATH?>bootstrap450/dist/css/bootstrap.css" rel="stylesheet">
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+
+<!--<script src="<?php echo PUBLIC_PATH?>bootstrap450/dist/vendor/jquery.slim.min.js"></script>-->
+<script src="<?php echo PUBLIC_PATH?>bootstrap450/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- jquery-validation -->
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo PUBLIC_PATH?>AdminLTE-3.0.4/dist/js/demo.js"></script>
+
+<style>
+/*    body {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}*/
+
+</style>
+ </head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <?php View::partial('kumbia/top_in',NULL,array("tit"=>$titulo)) ?>
+  <?php View::partial('kumbia/left') ?>
+
+  <?php View::content() ?>
+  <?php View::partial('kumbia/footer_in') ?>
+   
+</div>
+    
+</body>
+</html>

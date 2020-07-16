@@ -1,0 +1,163 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-8">
+            <!-- /.card -->
+            <?php View::content();?>
+            <form method="POST" id="quickForm" novalidate="novalidate">
+                
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                <?php echo Form::hidden("a.id")?>
+                <div class="form-group">
+                  <label>Promoción</label>
+                  <?php echo Form::text("a.art_nom","maxlength='60' class='form-control' placeholder='Ingrese Nombre de la Promoción' autocomplete='OFF' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Precio</label>
+                  <?php echo Form::text("a.art_pre","maxlength='10' class='form-control' placeholder='Ingrese Precio del Artículo' autocomplete='OFF' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Publicado</label>
+                  <?php echo Form::select("a.publicado",Articulo::$PUBLICADO,"class='form-control' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Categoría</label>
+                  <?php echo Form::dbSelect("a.categoria_id",NULL,array("categoria","combo"),NULL,"class='form-control' ")?>
+                </div>
+                <!-- /.form group -->
+
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                  <button type="submit" id="registrar" class="btn btn-info float-right">Registrar Promoción</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <script>
+//  $(document).ready(function (){
+//       $("form").submit(function(e){
+////            var condicion = $("#rgpd").is(":checked");
+////            if(!condicion){
+//                //e.preventDefault();
+////            }else{
+////                $("[name='enviar']").click(function(){
+////                    $(this).attr("disabled","disabled");
+////                });
+////            };  
+//        });
+//        
+//      $("#a_art_nom").keyup(function (){
+//          mostrarProductos();
+//      });
+//
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//$.validator.setDefaults({
+//    submitHandler: function (form) {
+//      //alert( "Form successful submitted!" );
+//      //$('#quickForm').submit();
+//      
+//      form.submit();
+//    }
+//  });
+//  $('#quickForm').validate({
+//    rules: {
+//      promo: {
+//        required: true,
+//        minlength: 5
+//        /*email: true,*/
+//      },
+//      precio: {
+//        required: true,
+//        minlength: 2,
+//        number: true
+//      },
+//      
+//    },
+//    messages: {
+//      promo: {
+//        required: "Por favor, Ingrese el nombre de la Promoción",
+//        minlength: "Ingrese al Menos 5 Caracteres"
+//      },
+//      precio: {
+//        required: "Por favor, Ingrese el Precio de la Promoción",
+//        minlength: "El Precio debe tener al menos 2 dígitos",
+//        number: "El precio debe ser numérico"
+//      }
+//      
+//    },
+//    errorElement: 'span',
+//    errorPlacement: function (error, element) {
+//      error.addClass('invalid-feedback');
+//      element.closest('.form-group').append(error);
+//    },
+//    highlight: function (element, errorClass, validClass) {
+//      $(element).addClass('is-invalid');
+//    },
+//    unhighlight: function (element, errorClass, validClass) {
+//      $(element).removeClass('is-invalid');
+//    }
+//  });
+//  
+//  
+//});//fin de ready()
+//  
+//  function mostrarProductos()
+//  {
+//      var texto = $("#a_art_nom").val();
+//      var url="<?php echo PUBLIC_PATH?>../../articulo/filtrado";
+//      var datos ={"texto": texto};
+////      console.log(texto);
+//      $.post(url, datos, function (content){
+//      //console.log(content);          
+//      $("#busqueda > tbody").html(content);
+//      });
+//      
+//  }
+//  //         $para="'{$a->id}','{$a->descripcion}','{$a->marca}','{$a->unidad}'"
+//
+//  function agregar(idx,descripcion, marca, unidad )
+//  {
+//      var id_t="#cantidad"+idx;
+//      var cant=$(id_t).val();
+//      var hideId   = "<input type='hidden' id='idx"+idx+"'  value='"+idx+"'  name='ids[]'>";
+//      var hideCant = "<input type='hidden' id='cant"+idx+"' value='"+cant+"' name='cant[]'>";
+//      content ="<tr>" + 
+//                    "<td>"+descripcion+"</td>"+
+//                    "<td>"+marca+"</td>"+
+//                    "<td>"+unidad+"</td>"+
+//                    "<td><label>"+cant+"</label></td>"+
+//                    "<td> "+hideId+hideCant+"<button type='button' class='btn btn-danger' onclick='quitar(this)'>Quitar</button> </td>"+
+//               "</tr>";
+//      $("#resultado > tbody").append(content);
+//      
+//  }
+//  function quitar(idx){
+//      console.log(idx.parentNode.parentNode);
+//      $(idx.parentNode.parentNode).remove();
+//  }
+  </script>

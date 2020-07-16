@@ -1,0 +1,170 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-8">
+            <!-- /.card -->
+            <?php View::content();?>
+            <form method="POST" id="quickForm" novalidate="novalidate">
+                
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                  <?php echo Form::hidden("a.id")?>
+                <div class="form-group">
+                  <label>Promoción</label>
+                  <?php echo Form::text("a.art_nom","disabled maxlength='60' class='form-control' placeholder='Ingrese Nombre de la Promoción' autocomplete='OFF' ")?>
+                </div>
+                  <div>
+                  <h4>Artículos Componentes</h4>
+                <table class="table" id="resultado">
+                    <thead>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>Artículo</td>
+                            <td>Cant</td>
+                            <td>Marca</td>
+                            <td>Unidad</td>
+                            <td>Categoria</td>
+
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($lista as $compo){?>
+                        <tr id="fila<?php echo $compo->linea_id?>">
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="quitarDB('<?php echo $compo->linea_id?>')" >Quitar</button>
+                            </td>
+                            <td><?php echo $compo->descripcion?></td>
+                            <td><?php echo $compo->cant?></td>
+                            <td><?php echo $compo->marca?></td>
+                            <td><?php echo $compo->abreviatura?></td>
+                            <td><?php echo $compo->categoria?></td>
+                        </tr>
+                        
+                        <?php }?>
+                    </tbody>
+                </table>
+                  
+                  </div>
+                <!-- /.form group -->
+                <div class="form-group">
+                    <label>Buscar artículo</label>
+                  <?php echo Form::text("x.descrip","maxlength='15' class='form-control' placeholder='Ingrese Nombre del Artículo' autocomplete='OFF' ")?>
+                </div>
+                <table class="table" id="busqueda">
+                    <thead>
+                        <tr>
+                            <td>Artículo</td>
+                            <td>Marca</td>
+                            <td>Unidad</td>
+                            <td>Categoria</td>
+                            <td></td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+<!--                  <button type="submit" id="registrar" class="btn btn-info float-right">Registrar Promoción</button>-->
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <script>
+  $(document).ready(function (){
+       
+      $("#x_descrip").keyup(function (){
+          mostrarProductos();
+      });
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+  
+});//fin de ready()
+  
+  function mostrarProductos()
+  {
+      var texto = $("#x_descrip").val();
+      var url="<?php echo PUBLIC_PATH?>../../articulo/filtrado";
+      var datos ={"texto": texto};
+//      console.log(texto);
+      $.post(url, datos, function (content){
+      //console.log(content);          
+      $("#busqueda > tbody").html(content);
+      });
+      
+  }
+  //         $para="'{$a->id}','{$a->descripcion}','{$a->marca}','{$a->unidad}'"
+
+  function agregar(idx,descripcion, marca, unidad ,categ)
+  {
+      var id_t="#cantidad"+idx;
+      var cant=$(id_t).val();
+      var id_art=$("#a_id").val();
+      
+      if(isNaN(cant)){
+          error("la Cantidad No es un numero entero","Error");
+      }else{
+          var url="<?php echo PUBLIC_PATH?>../../promosion/agregarcompo";
+          var datos={"idx":idx, "cant": cant,"id_art":id_art};
+          $.post(url, datos,function (x){
+
+          var botonQ="<button class='btn btn-danger' onclick=\"quitarDB('"+x+"')\" >Quitar</button>";
+      content ="<tr>" +
+                    "<td>"+botonQ+"</td>"+
+                    "<td>"+descripcion+"</td>"+
+                    "<td><label>"+cant+"</label></td>"+
+                    "<td>"+marca+"</td>"+
+                    "<td>"+unidad+"</td>"+
+                    "<td>"+categ+"</label></td>"+
+               "</tr>";
+      $("#resultado > tbody").append(content);
+          
+              console.log("Datos Registrados "+x);
+          });
+          
+        }
+      
+//      console.log(isNaN(cant));
+//      var hideId   = "<input type='hidden' id='idx"+idx+"'  value='"+idx+"'  name='ids[]'>";
+//      var hideCant = "<input type='hidden' id='cant"+idx+"' value='"+cant+"' name='cant[]'>";
+      
+  }
+  
+  function quitarDB(idx){
+      var url = "<?php echo PUBLIC_PATH?>../../promosion/quitar";
+      var datos={"idx": idx};
+      console.log(datos)
+      $.post(url,datos,function (r){
+        console.log(r);
+        $("#fila"+idx).remove();
+      });
+  }
+  </script>

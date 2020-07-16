@@ -1,0 +1,155 @@
+  
+<style>
+.dropdown-toggle::after {
+    display: none;
+}    
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- /.card -->
+                    <div class="card card-info">
+                        <div class="card-header">
+
+                            <h3 class="card-title"><?php echo $sub; ?></h3>
+                            <!--<a href="<?php //echo $linkAdd; ?>" class="btn btn-primary float-right">Agregar</a>-->
+                        </div>
+                        <div class="card-body">
+                            <h3><?php echo $a->neg_nom?></h3>
+                            <h5><?php echo $a->neg_dom?></h5>
+
+
+<div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pedidos</span>
+                <span class="info-box-number">
+                  <?php echo $cant_ped?>
+                  <!--<small>%</small>-->
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Promosiones</span>
+                <span class="info-box-number"><?php echo $cant_pro?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Artículos</span>
+                <span class="info-box-number"><?php echo $cant_art?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Marcas</span>
+                <span class="info-box-number"><?php echo $cant_art?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>                            
+                            
+                            
+                            
+
+
+                            
+<!--                                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+<table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>Provincia</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php /*foreach ($lista as $a){
+                        $clase_color="";
+                        if($a->activo=="N"){ 
+                            $clase_color=" class='text-danger' ";
+                        }
+                        ?>
+                    <tr>
+                        <td<?php echo $clase_color?>><?php echo $a->rol?></td>
+                    </tr>
+                    
+                    <?php } */?>
+              </table>
+                                            </div>
+                                        </div>
+
+                            </div>-->
+
+
+
+
+
+
+
+                            <!-- time Picker -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+//    
+//    $(function () {
+//        $("#example1").DataTable({
+//            "responsive": true,
+//            "autoWidth": true,
+//        });
+//        
+//    });
+</script>

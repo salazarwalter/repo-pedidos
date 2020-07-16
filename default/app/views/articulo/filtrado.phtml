@@ -1,0 +1,22 @@
+<?php if(!$lista) {?>
+<span class="text-info">No hay Articulos . . .</span>
+<?php } else { 
+     foreach ($lista as $a){ 
+         $para="'{$a->id}','{$a->descripcion}','{$a->marca}','{$a->unidad}','{$a->categoria}'"
+         ?>
+<tr>
+    <td><?php echo $a->descripcion?></td>
+    <td><?php echo $a->marca?></td>
+    <td><?php echo $a->unidad?></td>
+    <td><?php echo $a->categoria?></td>
+    <td>
+        <?php echo Form::text("cantidad".$a->id,"class=''","1")?>
+    </td>
+    <td>
+        <button type="button" class="btn btn-info" onclick="agregar(<?php echo $para?>)">Agregar</button>
+    </td>
+</tr>
+<?php } 
+
+     }?>
+

@@ -1,0 +1,91 @@
+  
+<style>
+.dropdown-toggle::after {
+    display: none;
+}    
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-10">
+                    <!-- /.card -->
+                    <div class="card card-info">
+                        <div class="card-header">
+
+                            <h3 class="card-title"><?php echo $sub; ?></h3>
+                            <a href="<?php echo $linkVolver; ?>" class="btn btn-primary float-right">Anterior</a>
+                        </div>
+                        <div class="card-body">
+
+
+
+<div class="row">
+        <?php foreach($lista as $r){?>
+          <div class="col-12 col-sm-6 col-md-4">
+              <a href="<?php echo $linkSig.$r->id;?>">
+                <div class="info-box">
+<!--                  <span class="info-box-icon bg-info elevation-1">
+
+                      <img src="<?php echo $r->iconox?>">
+                  </span>-->
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">
+                        <i class="fa fa-home text info"></i> 
+                        <?php echo $r->neg_nom?></span>
+                    <span class="info-box-number">
+                      <small><?php echo $r->neg_dom?></small>
+                    </span>
+                    <span class="info-box-number">
+                        <i class="fa fa-phone text-info"></i> 
+                      <small><?php echo $r->neg_tel?></small>
+                    </span>
+                    <span class="info-box-number">
+                      <small><?php echo $r->horario?></small>
+                    </span>
+                    <span class="info-box-number">
+                      <small><?php echo $r->tags?></small>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+             </a>
+            <!-- /.info-box -->
+          </div>
+        <?php }?>
+    
+        </div>                            
+                            
+                            
+                            <!-- time Picker -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    
+//    $(function () {
+//        $("#example1").DataTable({
+//            "responsive": true,
+//            "autoWidth": false,
+//        });
+//        
+//    });
+</script>

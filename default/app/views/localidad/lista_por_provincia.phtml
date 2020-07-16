@@ -1,0 +1,11 @@
+<?php if(!$lista) {?>
+<option value="0">No Existe localidad de esta provincia</option>
+<?php } else { 
+     foreach ($lista as $a) { ?>
+<option value="<?php echo $a->id?>"<?php echo $a->id== $loc_id?" selected":""?>>
+<?php echo $a->loc?>
+</option>
+     <?php } ?>
+
+<?php } ?>
+

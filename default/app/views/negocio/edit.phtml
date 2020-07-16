@@ -1,0 +1,115 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-6">
+            <!-- /.card -->
+            <?php View::content();?>
+                <form method="POST">
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                  <?php echo Form::hidden("a.id")?>
+                <div class="form-group">
+                  <label>Nombre del Negocio</label>
+                  <?php echo Form::text("a.neg_nom","maxlength='45' class='form-control' placeholder='Ingrese el Nombre del Negocio'")?>
+                </div>
+<!--                <div class="form-group">
+                  <label>CUIT del Negocio</label>
+                  <?php echo Form::text("a.neg_cuit","maxlength='15' class='form-control' placeholder='Ingrese el CUIT'")?>
+                </div>-->
+<!--                <div class="form-group">
+                  <label>Teléfono/s</label>
+                  <?php echo Form::text("a.neg_tel","maxlength='30' class='form-control' placeholder='Ingrese el/los Teléfono/s'")?>
+                </div>-->
+<!--                <div class="form-group">
+                  <label>Email</label>
+                  <?php echo Form::text("a.neg_mail","maxlength='30' class='form-control' placeholder='Correo Electrónico'")?>
+                </div>-->
+                <div class="form-group">
+                  <label>Domicilio</label>
+                  <?php echo Form::text("a.neg_dom","maxlength='45' class='form-control' placeholder='Dirección Completa del Negocio'")?>
+                </div>
+                <div class="form-group">
+                  <label>Rubro</label>
+                  <?php echo Form::dbSelect("a.rubro_id",NULL,array("rubro","combo"),NULL,"class='form-control'")?>
+                </div>
+                <div class="form-group">
+                  <label>Provincia</label>
+                  <?php echo Form::dbSelect("a.provincia_id",NULL,array("provincia","combo"),NULL,"class='form-control'")?>
+                </div>
+                <div class="form-group">
+                  <label>Localidad</label>
+                  <?php echo Form::select("a.localidad_id",array(),"class='form-control'")?>
+                </div>
+                  <h3>Administración</h3>
+                <div class="form-group">
+                  <label>Nombre del Administrador</label>
+                  <?php echo Form::text("a.adm_nom","maxlength='45' class='form-control' placeholder='Apellido y Nombre'")?>
+                </div>
+                <div class="form-group">
+                  <label>Celular</label>
+                  <?php echo Form::text("a.adm_cel","maxlength='15' class='form-control' placeholder='Celular del Administrador'")?>
+                </div>
+                <div class="form-group">
+                  <label>Usuario</label>
+                  <?php echo Form::text("a.usu","maxlength='40' class='form-control' placeholder='Nombre de Usuario para el ingreso'")?>
+                </div>
+                  
+                <!-- time Picker -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-info float-right">Registrar</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <script>
+  $(document).ready(function (){
+      verLocalidades();
+      $("#a_provincia_id").change(function (){
+          verLocalidades()
+      });
+  });
+      
+
+function verLocalidades()
+{
+    var prov_id = $("#a_provincia_id").val();
+    var loc_id =  $("#a_localidad_id").val();
+    var datos={"prov_id": prov_id, "loc_id": loc_id};
+    var url="<?php echo PUBLIC_PATH."../../localidad/lista_por_provincia"?>";
+    $.post(url, datos, function (e){
+//        console.log(e);
+       $("#a_localidad_id").html(e) ;        
+    });
+    
+    
+}
+      
+  </script>
+  
+  

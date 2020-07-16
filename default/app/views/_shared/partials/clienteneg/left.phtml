@@ -1,0 +1,90 @@
+            
+          <li class="nav-header">GESTION PEDIDOS</li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../localadmin/panel" class="nav-link">
+              <i class="text-warning fas fa-tachometer-alt nav-icon"></i>
+              <p>Mi Panel</p>
+            </a>
+          </li>
+<!--          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../articulo/" class="nav-link">
+              <i class="text-danger fas fa-business-time nav-icon"></i>
+              <p>Artículos</p>
+            </a>
+          </li>-->
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../promosion/promosiones" class="nav-link">
+              <i class="text-primary fab fa-buffer nav-icon"></i>
+              
+              <p>Ver Promosiones</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../promosion/micarrito" class="nav-link">
+              <!--<i class="nav-icon"></i>-->
+              <i class="text-primary fas fa-cart-plus nav-icon"></i>
+              
+              <p>Mi Carrito</p>
+                  <?php $c=Carrito::size();
+                  if($c>0) {?>
+                    <!--<span class="right badge"> <i class="fas fa-bell text-danger"></i></span>-->
+                    <?php foreach (Carrito::$CARRITO as $value) { ?>
+    
+                    <span class="badge badge-danger"> <?php echo " ".$value; ?> </span>
+<?php } ?>
+                    
+                  <?php } ?>
+              
+              
+            </a>
+          </li>
+<!--          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../unidad" class="nav-link">
+              <i class="text-warning fas fa-book nav-icon"></i>
+              <p>Unidades</p>
+            </a>
+          </li>-->
+<!--          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../marca" class="nav-link">
+              <i class="text-info far fa-envelope nav-icon"></i>
+              <p>Marcas</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../categoria/" class="nav-link">
+              <i class="text-success fas fa-bicycle nav-icon"></i>
+              <p>Categorías</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../clientesneg/" class="nav-link">
+              <i class="text-primary fas fa-user nav-icon"></i>
+              <p>Negocios Cliente</p>
+            </a>
+          </li>-->
+          
+          <li class="nav-header">INSTITUCIÓN / EMPRESA</li>
+<!--          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../negocio/general" class="nav-link">
+              <i class="text-warning fas fa-chart-pie nav-icon"></i>
+              <p>General</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../negocio/domicilio" class="nav-link">
+              <i class="text-info fas fa-file nav-icon"></i>
+              <p>Dirección</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../negocio/busqueda/" class="nav-link">
+              <i class="text-success fas fa-tree nav-icon"></i>
+              <p>Búsqueda</p>
+            </a>
+          </li>-->
+          <li class="nav-item">
+            <a href="<?php echo AppController::$LINK_MISDATOS?>" class="nav-link">
+              <i class="text-info fas fa-table nav-icon"></i>
+              <p>Datos Personales</p>
+            </a>
+          </li>

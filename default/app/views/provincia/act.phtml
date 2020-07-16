@@ -1,0 +1,49 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-6">
+            <!-- /.card -->
+            <?php View::content();?>
+                <form method="POST">
+            <div class="card card-success">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                  <?php echo Form::hidden("a.id")?>
+                <div class="form-group">
+                  <label>Provincia</label>
+                  <?php echo Form::text("a.prov","disabled maxlength='30' class='form-control' placeholder='Ingrese provincia'")?>
+                </div>
+                <!-- /.form group -->
+
+                <!-- time Picker -->
+              </div>
+              <!-- /.card-body -->
+              <?php Flash::valid("Desea Activar esta provincia? Por favor, Confirmar")?>
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-success float-right">Si, Activar</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

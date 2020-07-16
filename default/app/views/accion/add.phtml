@@ -1,0 +1,92 @@
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-6">
+            <!-- /.card -->
+            <?php View::content();?>
+                <form method="POST">
+            <div class="card card-info">
+              <div class="card-header">
+                  
+                <h3 class="card-title"><?php echo $sub;?></h3>
+                <a href="<?php echo $linkVolver;?>" class="btn btn-primary float-right">Volver</a>
+              </div>
+              <div class="card-body">
+                <!-- Color Picker -->
+                <div class="form-group">
+                  <label>Nombre de la Acción</label>
+                  <?php echo Form::text("a.accion","maxlength='30' class='form-control' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Transacción</label>
+                  <?php echo Form::select("a.ajax", Accion::$AJAX,"class='form-control' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Rol al que pertenece</label>
+                  <?php echo Form::dbSelect("a.rol_id",NULL,array("rol","combo"),NULL,"class='form-control' ")?>
+                </div>
+                <div class="form-group">
+                  <label>Módulo</label>
+                  <?php echo Form::dbSelect("a.modulo_id",NULL,array("modulo","combo"),NULL,"class='form-control'")?>
+                </div>
+                <div class="form-group">
+                  <label>Controlador</label>
+                  <?php echo Form::select("a.controlador_id",array(),"class='form-control' ")?>
+                </div>
+                <!-- /.form group -->
+
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-info float-right">Registrar</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <script>
+   
+   $(document).ready(function (){
+       verControladores();
+       $("#a_rol_id").change(function (){
+           verControladores();
+       });
+       $("#a_modulo_id").change(function (){
+           verControladores();
+       });
+   });
+
+    function verControladores(){
+        var rol_id     = $("#a_rol_id").val();
+        var control_id = $("#a_controlador_id").val();
+        var modulo_id  = $("#a_modulo_id").val();
+        
+        var url   = "<?php echo PUBLIC_PATH."../../controlador/get_por_rol_id";?>";
+        var datos = {"rol_id": rol_id, "control_id": control_id, "modulo_id":modulo_id};
+        $.post(url,datos,function (d){
+            console.log(d);
+            $("#a_controlador_id").html(d);
+        });
+    }
+   
+  </script>
+      
+      
