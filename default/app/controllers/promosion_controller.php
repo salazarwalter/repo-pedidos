@@ -162,4 +162,31 @@ class PromosionController extends AppController {
         Redirect::to("../../promosion/promosiones");
     }
     
+ public function micarrito() 
+    {
+        $this->titulo      = "MI CARRITO";
+        $this->sub         = "Detalle";
+        $this->linkMas     = PUBLIC_PATH."../../promosion/mas/";
+        $this->linkMenos   = PUBLIC_PATH."../../promosion/menos/";
+        $this->linkBorrar  = PUBLIC_PATH."../../promosion/borrar/";
+    
+    }    
+    public function mas($arti_id) {
+        $art = new Articulo();
+            $h =$art->hallarParaCarrito($arti_id);
+            if(count($h)==1){
+                Carrito::add($arti_id);
+            }
+
+        Redirect::to("../../promosion/micarrito");
+    }
+    public function menos($arti_id) {
+        $art = new Articulo();
+            $h =$art->hallarParaCarrito($arti_id);
+            if(count($h)==1){
+                Carrito::unoMenos($arti_id);
+            }
+
+        Redirect::to("../../promosion/micarrito");
+    }
 }

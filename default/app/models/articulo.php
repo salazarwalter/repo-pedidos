@@ -81,6 +81,21 @@ class Articulo extends ActiveRecord{
         return $this->find_all_by_sql($sql);
     }
     
+    public function listaCarritoParaCliente() {
+    $sql=" 
+            SELECT articulo.*,
+                   `categoria`.`categoria`, 
+                   `categoria`.`icono` 
+            FROM articulo INNER JOIN categoria ON `articulo`.`categoria_id` = `categoria`.`id` 
+            WHERE `articulo`.`publicado`= 'S' 
+            AND  `articulo`.`activo`= 'S' 
+            AND articulo.negocio_id = ".Auth::get("negocio_id")." 
+        ";
+//    die($sql);
+        
+        return $this->find_all_by_sql($sql);
+    }
+    
     public function agregarArticulo($vector) {
         $vector["art_nom"]    = trim($vector["art_nom"]);
         $vector["descripcion"]= trim($vector["art_nom"]);
@@ -297,7 +312,7 @@ class Articulo extends ActiveRecord{
     public function hallarArticulos($arti_id) {
         $arti_id = (int)$arti_id;
         if($arti_id<=0){
-            Flash::error("Provincia No identificada");
+            Flash::error("art No identificada");
             return FALSE;
         }
         $sql=" 
@@ -367,6 +382,7 @@ class Articulo extends ActiveRecord{
                        linea.cant,
                        marca.marca,
                        unidad.abreviatura,
+                       unidad.unidad,
                        categoria.categoria
                 FROM descripcion INNER JOIN articulolinea linea ON linea.descripcion_id     = descripcion.id
                                  INNER JOIN articulo            ON linea.articulo_id        = articulo.id

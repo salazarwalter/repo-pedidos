@@ -15,18 +15,49 @@ class Carrito {
     public static $CARRITO=[];
     public static $CARRITO_nombre="carrito-413";
     
-    public static function add($h){
+    public static function get(){
         if(Session::has(Carrito::$CARRITO_nombre)){
             Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
-//            print_r(Carrito::$CARRITO);
-//            die();
         }
-
+      return Carrito::$CARRITO;  
+    }
+    
+    public static function add($id_art){
+        if(Session::has(Carrito::$CARRITO_nombre)){
+            Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
+        }
+        if (array_key_exists($id_art, Carrito::$CARRITO)) {
+            Carrito::$CARRITO[$id_art]++;
+        }else{
+            Carrito::$CARRITO[$id_art] = 1;
+        }
         
-        array_push(Carrito::$CARRITO, $h);
-        Session::set(Carrito::$CARRITO_nombre, Carrito::$CARRITO);
-        
+       Session::set(Carrito::$CARRITO_nombre, Carrito::$CARRITO);
    }
+   
+   public static function unoMenos($id_art){
+        if(Session::has(Carrito::$CARRITO_nombre)){
+            Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
+        }
+        if (array_key_exists($id_art, Carrito::$CARRITO)) {
+            if(Carrito::$CARRITO[$id_art]>0) {
+                Carrito::$CARRITO[$id_art]--;
+            }
+        }
+        
+       Session::set(Carrito::$CARRITO_nombre, Carrito::$CARRITO);
+   }
+   public static function unoMas($id_art){
+        if(Session::has(Carrito::$CARRITO_nombre)){
+            Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
+        }
+        if (array_key_exists($id_art, Carrito::$CARRITO)) {
+                Carrito::$CARRITO[$id_art]++;
+        }
+        
+       Session::set(Carrito::$CARRITO_nombre, Carrito::$CARRITO);
+   }
+   
    public static function size(){
         if(Session::has(Carrito::$CARRITO_nombre)){
             Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
