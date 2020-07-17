@@ -71,4 +71,13 @@ class Carrito {
         }
        Carrito::$CARRITO=[];
    }
+   public static function quitar($id_art) {
+        if(Session::has(Carrito::$CARRITO_nombre)){
+            Carrito::$CARRITO = Session::get(Carrito::$CARRITO_nombre);
+            if (array_key_exists($id_art, Carrito::$CARRITO)) {
+                unset(Carrito::$CARRITO[$id_art]);
+                Session::set(Carrito::$CARRITO_nombre, Carrito::$CARRITO);
+            }
+        }
+   }   
 }

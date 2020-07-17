@@ -164,13 +164,14 @@ class PromosionController extends AppController {
     
  public function micarrito() 
     {
-        $this->titulo      = "MI CARRITO";
-        $this->sub         = "Detalle";
-        $this->linkMas     = PUBLIC_PATH."../../promosion/mas/";
-        $this->linkMenos   = PUBLIC_PATH."../../promosion/menos/";
-        $this->linkBorrar  = PUBLIC_PATH."../../promosion/borrar/";
-    
+        $this->titulo       = "MI CARRITO";
+        $this->sub          = "Detalle";
+        $this->linkMas      = PUBLIC_PATH."../../promosion/mas/";
+        $this->linkMenos    = PUBLIC_PATH."../../promosion/menos/";
+        $this->linkBorrar   = PUBLIC_PATH."../../promosion/borrar/";
+        $this->linkGuardar  = PUBLIC_PATH."../../promosion/registrarcarrito/";    
     }    
+    
     public function mas($arti_id) {
         $art = new Articulo();
             $h =$art->hallarParaCarrito($arti_id);
@@ -189,4 +190,19 @@ class PromosionController extends AppController {
 
         Redirect::to("../../promosion/micarrito");
     }
+
+    public function borrar($arti_id) {
+        $art = new Articulo();
+            $h =$art->hallarParaCarrito($arti_id);
+            if(count($h)==1){
+                Carrito::quitar($arti_id);
+            }
+
+        Redirect::to("../../promosion/micarrito");
+    }
+    public function registrarcarrito() {
+        
+        Redirect::to("../../promosion/micarrito");
+    }
+    
 }
