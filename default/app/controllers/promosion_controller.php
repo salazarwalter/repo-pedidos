@@ -170,6 +170,7 @@ class PromosionController extends AppController {
         $this->linkMenos    = PUBLIC_PATH."../../promosion/menos/";
         $this->linkBorrar   = PUBLIC_PATH."../../promosion/borrar/";
         $this->linkGuardar  = PUBLIC_PATH."../../promosion/registrarcarrito/";    
+        $this->size=Carrito::size();
     }    
     
     public function mas($arti_id) {
@@ -201,8 +202,42 @@ class PromosionController extends AppController {
         Redirect::to("../../promosion/micarrito");
     }
     public function registrarcarrito() {
+        $size=Carrito::size();
+        if($size>0){
+            $total =0;
+                    $lineas=[];
+                    foreach (Carrito::$CARRITO as $id =>$value){
+                        $obj = new Articulo();
+                        $a = $obj->find_by_id($id);
+                        $subt = $obj->art_pre * $value;
+                        $total +=$subt;
+                        $lineas[]=[$value,$id, $obj->art_pre];
+                    }
+        $c =new Cliente();
+        $cli = $c->find_first("usuario_id= ".Auth::get("id"));
+        $ped =new Pedido();
+        $ped->cliente_id = $cli->id;
+        $ped->negocio_id = Auth::get("negocio_id");
+        $ped->total = $total;
+        $ped->create();
+        foreach ($lineas as $fila) {
+            $l =new Pedidolinea();
+            $l->pedido_id    = $ped ->id;
+            $l->cant         = $fila[0];
+            $l->articulo_id  = $fila[1];
+            $l->precio_linea = $fila[2];
+            $l->create();
+        }
+        Carrito::clearAll();
+        }
         
-        Redirect::to("../../promosion/micarrito");
+        Redirect::to("../../promosion/pedidos");
     }
-    
+    public function pedidos() 
+    {
+        $this->titulo       = "PEDIDOS";
+        $this->sub          = "Pendientes";
+        $ped = new Pedido();
+        $this->lista = $ped->pedidosPendientes();
+    }
 }

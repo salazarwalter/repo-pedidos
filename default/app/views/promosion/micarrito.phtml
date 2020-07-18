@@ -21,13 +21,14 @@
                         <div class="card-header">
 
                             <h3 class="card-title"><?php echo $sub; ?></h3>
-                            <a href="<?php echo $linkGuardar; ?>" class="btn btn-primary float-right">Confirmar Pedido</a>
+                            
+                            <a href="<?php echo ($size==0?"#":"").$linkGuardar; ?>" class="btn btn-primary float-right">Confirmar Pedido</a>
                         </div>
                         <div class="card-body">
                                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                             <?php if(Carrito::size()==0) {?>   
+                                             <?php if($size==0) {?>   
                                                 Su carrito esta vacío
                                              <?php } else {?>   
                                                 
@@ -66,7 +67,7 @@
 <div class="btn-group">
   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fa fa-star"></i>
-    Más
+    Más Datos
   </button>
   <div class="dropdown-menu">
      <?php $compo = $obj->componentes($a->id);
