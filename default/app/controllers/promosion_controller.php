@@ -239,5 +239,27 @@ class PromosionController extends AppController {
         $this->sub          = "Pendientes";
         $ped = new Pedido();
         $this->lista = $ped->pedidosPendientes();
+        $this->linkDetalle = PUBLIC_PATH."../../promosion/detallepedido/";
+    }
+    
+    public function detallepedido($ped_id) {
+        $this->titulo       = "PEDIDOS";
+        $this->sub          = "Detalle";
+        $this->linkVolver = PUBLIC_PATH."../../promosion/pedidos";
+        $p =new Pedido();
+        $h=$p->hallarPedido($ped_id);
+//        print_r($h);
+//        die();
+        $this->lista=false;
+        if(count($h)==1){
+            $this->pedido = $h[0];
+            $linea = new Pedidolinea();
+            $this->lista = $linea->detalle($this->pedido->id);
+//            print_r($this->lista);
+            $this->art = new Articulo();
+        }else{
+            Flash::warning("Pedido No Hallado");
+        }
+//        die();
     }
 }

@@ -1,0 +1,164 @@
+  
+<style>
+.dropdown-toggle::after {
+    display: none;
+}    
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- /.card -->
+                    <div class="card card-info">
+                        <div class="card-header">
+
+                            <h3 class="card-title"><?php echo $sub; ?></h3>
+                            
+                            <a href="<?php echo $linkVolver; ?>" class="btn btn-primary float-right">Volver</a>
+                        </div>
+                        <div class="card-body">
+                           <?php View::content();
+                           if($lista) {?> 
+                            
+                                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+<table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Promoción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                  <th>Detalle</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php $total =0;
+                    foreach ($lista as $value){
+                        $obj = new Articulo();
+//                        $a = $obj->find_by_id($id);
+                        $subt = $value->precio_linea * $value->cant;
+                        $total +=$subt;
+                        ?>
+                    <tr>
+                        
+                        
+                        <td><?php echo $value->art_nom?></td>
+                        <td class="right"?>$<?php echo number_format($value->precio_linea,2,",",".")?></td>
+                        <td><?php echo $value->cant;?></td>
+                        <td class="right"?>$<?php echo number_format($subt,2,",",".")?></td>
+                        <td>
+
+           <?php $compo = $obj->componentes($value->articulo_id); ?>
+                            
+<div class="btn-group">
+  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-star"></i>
+    Más Datos
+  </button>
+  <div class="dropdown-menu">
+     <?php $compo = $obj->componentes($value->articulo_id);
+           if(count($compo)==0) {
+                $xx=$obj->hallarArticulos($value->articulo_id);
+                            ?>
+           <a class="dropdown-item" href="#">
+               <i class="fa fa-star text-info"></i>
+               <?php echo $xx->marca?>
+           </a>
+            <?php } else { 
+               foreach ($compo as $x) { ?>
+                <a class="dropdown-item" href="#">
+                    <i class="fa fa-star text-info"></i>
+                     <?php echo $x->descripcion?>
+                </a>
+                <a class="dropdown-item" href="#">
+                    <?php echo $x->marca?>
+                </a>
+                <a class="dropdown-item" href="#">
+                    Cantidad <strong><?php echo $x->cant?></strong> <small><?php echo $x->unidad?></small>
+                </a>
+                <div class="dropdown-divider"></div>
+                                               <?php  }
+                                  }
+                                ?>
+
+                
+  </div>
+  </div>
+    
+                                
+                        </td>
+<!--                        <td>
+                            <a href="<?php //echo $linkMas.$id?>" class="btn btn-info">
+                                <i class="fas fa-plus"></i>1
+                            </a>
+                            <a href="<?php //echo ($value==1?"#":"").$linkMenos.$id?>" class="btn btn-warning">
+                                <i class="fas fa-minus"></i>1
+                            </a>
+                            <a href="<?php //echo $linkBorrar.$id?>" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>-->
+                    
+                    <?php } ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td>$<?php echo number_format($total,2,",",".");?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+        </tbody>
+              </table>
+                          
+                                                
+                                            </div>
+                                        </div>
+                                <!-- /.card-body -->
+                            </div>
+
+                           <?php  }?>
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "columnDefs": [
+            { className: "text-right", "targets": [2,3] },      
+    ]
+        });
+        
+    });
+</script>

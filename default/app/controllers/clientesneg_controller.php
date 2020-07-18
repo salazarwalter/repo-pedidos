@@ -100,19 +100,19 @@ class ClientesnegController extends AppController {
     
     public function panel() 
     {
-        $this->titulo = "RUBROS";
-        $this->sub = "Seleccionar";
+        $this->titulo = "NEGOCIO CLIENTE";
+        $this->sub = "Panel";
         $r=new Rubro();
-        $this->lista = $r->listaRubros();
-        foreach ($this->lista as $value) {
-            if(!$value->icono){
-                $value->iconox = Rubro::$NO_IMAGE_FOLDER.Rubro::$NO_IMAGE_NAME;
-            }else{
-                $value->iconox = PUBLIC_PATH."files/upload/rubros/".$value->icono;
-                
-            }
-        }
-        $this->linkEmpresas=PUBLIC_PATH."../../clientesneg/empresas/";
+//        $this->lista = $r->listaRubros();
+//        foreach ($this->lista as $value) {
+//            if(!$value->icono){
+//                $value->iconox = Rubro::$NO_IMAGE_FOLDER.Rubro::$NO_IMAGE_NAME;
+//            }else{
+//                $value->iconox = PUBLIC_PATH."files/upload/rubros/".$value->icono;
+//                
+//            }
+//        }
+//        $this->linkEmpresas=PUBLIC_PATH."../../clientesneg/empresas/";
     }    
     
     public function empresas($rubro_id) 
@@ -127,4 +127,21 @@ class ClientesnegController extends AppController {
         $this->linkSig=PUBLIC_PATH."../../clientesneg/promosiones/";
     }
         
+    public function perfil() 
+    {
+        if(Input::hasPost("a")){
+            $vec=Input::post("a");
+            $adm =new Cliente();
+            if($adm->perfil($vec)){
+                Flash::valid("Datos Personales Actualizados");
+                Redirect::to("../../clientesneg/perfil");
+            }
+        }
+        $this->titulo = "CLIENTE";
+        $this->sub = "Datos Personales";
+        $a =new Cliente();
+        $cli = $a->find_first("usuario_id=".Auth::get("id"));
+        $this->a = $a->hallar($cli->id);
+    }    
+    
 }

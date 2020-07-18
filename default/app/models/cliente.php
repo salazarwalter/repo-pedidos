@@ -151,6 +151,41 @@ class Cliente extends ActiveRecord{
       return TRUE;
     }
     
+    public function perfil($vector) {
+        $h = new Cliente();
+        $obj = $h->find_first("usuario_id=".Auth::get("id"));
+        
+//        $obj = $h->hallar($vector["id"]);
+//        if(!$obj) return FALSE;
+        
+        $vector["id"]              = $obj->usuario_id;
+        
+        $vector["cli_nom"]      = trim($vector["cli_nom"]);
+        $vector["cli_dom"]      = trim($vector["cli_dom"]);
+        $vector["cli_dni"]      = trim($vector["cli_dni"]);
+        $vector["cli_cel"]      = trim($vector["cli_cel"]);
+        $vector["cli_mail"]      = trim($vector["cli_mail"]);
+        $vector["localidad_id"] = (int)trim($vector["localidad_id"]);
+        $vector["id"]           = $obj->id;
+        $vector["usuario_id"]   = $obj->usuario_id;
+        
+        if($vector["localidad_id"]<=0 ){
+             Flash::error("La Localidad Es Necesaria");
+             $this->rollback();
+            return FALSE;
+        }
+        
+        
+        $this->begin();
+        $cli = new Cliente();
+        if(!$cli->update($vector)){
+            $this->rollback();
+            return FALSE;
+        }
+      $this->commit();
+      return TRUE;
+    }
+    
     public function desactivar($vector) {
         $vector["id"]=(int)trim($vector["id"]);
         

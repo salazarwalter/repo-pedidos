@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of rubro
@@ -42,6 +37,30 @@ class Pedido extends ActiveRecord{
                               INNER JOIN `negocio`   ON `pedido`.`negocio_id`      = `negocio`.`id`
                 WHERE `pedido`.`estado` IN ('P','L','C')
                 AND `cliente`.usuario_id=".Auth::get("id");
+        return $this->find_all_by_sql($sql);
+    }
+    
+    public function hallarPedido($ped_id) {
+        $sql = " 
+                SELECT `pedido`.*,
+                        `cliente`.`cli_nom`,
+                        `cliente`.`cli_cel`,
+                        `cliente`.`cli_dom`,
+                        `cliente`.`cli_mail`,
+                        `cliente`.`negocio`,
+                        `cliente`.`cli_dni`,
+                        `cliente`.`cli_neg`,
+                        `negocio`.`neg_nom`,
+                        `negocio`.`neg_dom`,
+                        `negocio`.`neg_tel`,
+                        `negocio`.`neg_mail`,
+                        `negocio`.`neg_cuit`,
+                        `negocio`.`horario`
+                FROM `pedido` inner join `cliente` ON `pedido`.`cliente_id` = `cliente`.`id`
+                              inner join `negocio` ON `pedido`.`negocio_id` = `negocio`.`id`
+                WHERE cliente.`usuario_id` = ".Auth::get("id")."  "
+                . "AND pedido.id= $ped_id ";
+//        die($sql);
         return $this->find_all_by_sql($sql);
     }
     

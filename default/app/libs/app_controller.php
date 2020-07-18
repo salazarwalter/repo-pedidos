@@ -47,7 +47,7 @@ class AppController extends Controller
 //                    die("usuario_id=".Auth::get("id"));
                         $cli = $a->find_first("usuario_id=".Auth::get("id"));
                         AppController::$ANONIMO_NOMBRE = $cli->cli_nom;
-                        AppController::$LINK_MISDATOS = "#".PUBLIC_PATH."../../localadmin/perfil/";
+                        AppController::$LINK_MISDATOS = PUBLIC_PATH."../../clientesneg/perfil/";
                     break;
             }
             AppController::$MODULOS = $usu->tieneAcceso($this->controller_name, $this->action_name);
